@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import { format } from "date-fns";
@@ -50,6 +50,7 @@ export function AddTransactionForm({
     getValues,
     reset,
     trigger,
+    control,
   } = useForm({
     resolver: zodResolver(transactionSchema),
     defaultValues:
@@ -97,12 +98,13 @@ export function AddTransactionForm({
 
   const [scannerOpen, setScannerOpen] = useState(false);
   const [parsedData, setParsedData] = useState(null);
+  // import { useWatch } from "react-hook-form"; // Moved to top-level imports
 
-  const type = watch("type");
-  const isRecurring = watch("isRecurring");
-  const date = watch("date");
-  const watchedAccountId = watch("accountId");
-  const watchedCategory = watch("category");
+  const type = useWatch({ control, name: "type" });
+  const isRecurring = useWatch({ control, name: "isRecurring" });
+  const date = useWatch({ control, name: "date" });
+  const watchedAccountId = useWatch({ control, name: "accountId" });
+  const watchedCategory = useWatch({ control, name: "category" });
 
   // Map parsed category text to category ID
   const mapParsedCategoryToId = (catStr, targetType = null) => {

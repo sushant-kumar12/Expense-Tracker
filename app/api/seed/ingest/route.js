@@ -1,12 +1,14 @@
 // app/api/inngest/route.ts
+
 import { serve } from "inngest/next";
-import { inngest } from "@/lib/inngest/client";
+import { inngest } from "@/lib/ingest/client";
 import {
   checkBudgetAlerts,
   generateMonthlyReports,
   processRecurringTransaction,
   triggerRecurringTransactions,
-} from "@/lib/inngest/function"; // adjust path as needed
+  cleanupOldData,
+} from "@/lib/ingest/function";
 
 export const { GET, POST, PUT } = serve({
   client: inngest,
@@ -15,6 +17,8 @@ export const { GET, POST, PUT } = serve({
     triggerRecurringTransactions,
     generateMonthlyReports,
     checkBudgetAlerts,
+    cleanupOldData,
+    processRecurringTransaction,
   ],
 });
 

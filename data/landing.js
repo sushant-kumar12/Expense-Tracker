@@ -33,7 +33,7 @@ export const featuresData = [
     icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
     title: "Advanced Analytics",
     description:
-      "Get detailed insights into your spending patterns with AI-powered analytics",
+      "Get detailed insights into your spending patterns with analytics",
   },
   {
     icon: <Receipt className="h-8 w-8 text-blue-600" />,
@@ -44,7 +44,7 @@ export const featuresData = [
   {
     icon: <PieChart className="h-8 w-8 text-blue-600" />,
     title: "Budget Planning",
-    description: "Create and manage budgets with intelligent recommendations",
+    description: "Create and manage budgets to stay on top of your finances",
   },
   {
     icon: <CreditCard className="h-8 w-8 text-blue-600" />,
