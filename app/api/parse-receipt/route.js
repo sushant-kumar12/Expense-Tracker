@@ -48,8 +48,8 @@ export async function POST(req) {
     let model;
 
     try {
-      model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-      console.log("🤖 Using model: gemini-2.0-flash");
+      model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+      console.log("🤖 Using model: gemini-2.5-flash");
     } catch (err) {
       console.log("⚠️ Trying fallback model: gemini-pro-vision");
       model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });

@@ -3,18 +3,13 @@ import { defaultCategories } from "@/data/categories";
 import { AddTransactionForm } from "../_components/transaction-form";
 import { getTransaction } from "@/actions/transaction";
 
-export default async function AddTransactionPage(props) {
-  // Safe access to search params
-  const searchParams = props && props.searchParams ? props.searchParams : null;
+export default async function AddTransactionPage({ searchParams }) {
+  // ✅ Await searchParams (Next.js 15/16 requirement)
+  const params = await searchParams;
 
-  // Safe parsing of editId without optional chaining
   let editId = null;
-  if (
-    searchParams &&
-    typeof searchParams.edit === "string" &&
-    searchParams.edit.length > 0
-  ) {
-    editId = searchParams.edit;
+  if (params && typeof params.edit === "string" && params.edit.length > 0) {
+    editId = params.edit;
   }
 
   let accounts = [];
@@ -56,7 +51,6 @@ export default async function AddTransactionPage(props) {
         <h1 className="text-5xl gradient-title">Add Transaction</h1>
       </div>
 
-      {/* Notice block for debug mode */}
       {fetchErrors.length > 0 && (
         <div className="mb-4 p-3 rounded bg-yellow-50 border border-yellow-200 text-yellow-800">
           <strong>Notice:</strong> Some data couldn&rsquo;t be loaded. Check server

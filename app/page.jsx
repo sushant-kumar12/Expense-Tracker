@@ -33,25 +33,54 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Everything you need to manage your finances
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuresData.map((feature, index) => (
-              <Card className="p-6" key={index}>
-                <CardContent className="space-y-4 pt-4">
-                  {feature.icon}
-                  <h3 className="text-xl font-semibold">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+{/* ================= Features Section ================= */}
+<section id="features" className="py-20 bg-gray-50">
+  <div className="container mx-auto px-4">
+
+    {/* Section Heading */}
+    <h2 className="text-3xl font-bold text-center mb-12">
+      Everything you need to manage your finances
+    </h2>
+
+    {/* Features Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {featuresData.map((feature, index) => (
+        <Card
+          key={index}
+          className="
+            p-6 h-full
+            flex flex-col justify-between
+            transition-all duration-300
+            hover:shadow-xl hover:-translate-y-1
+          "
+        >
+          <CardContent className="space-y-4 pt-4 flex flex-col h-full">
+            
+            {/* Top Content */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50">
+                {feature.icon}
+              </div>
+
+              <h3 className="text-xl font-semibold text-center">
+                {feature.title}
+              </h3>
+
+              <p className="text-gray-600 text-center">
+                {feature.description}
+              </p>
+            </div>
+
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+
+  </div>
+</section>
+{/* ================= End Features Section ================= */}
+
+
 
       {/* How It Works Section */}
       <section className="py-20 bg-blue-50">

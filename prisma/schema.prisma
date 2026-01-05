@@ -1,25 +1,23 @@
 generator client {
   provider = "prisma-client-js"
+  // DO NOT set engineType here - use default binary
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"  // PostgreSQL
+ 
 }
-
 model User {
-  id                   String                @id @default(uuid())
-  clerkUserId          String                @unique
-  email                String                @unique
-  name                 String?
-  imageUrl             String?
-  transactions         Transaction[]
-  accounts             Account[]
-  budgets              Budget[]
-  financialInsights    FinancialInsight[]
-  createdAt            DateTime              @default(now())
-  updatedAt            DateTime              @updatedAt
+  id          String       @id @default(uuid())
+  clerkUserId String       @unique
+  email       String       @unique
+  name        String?
+  imageUrl    String?
+  transactions Transaction[]
+  accounts     Account[]
+  budgets      Budget[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 
   @@map("users")
 }
@@ -46,7 +44,7 @@ model Transaction {
   amount            Decimal
   description       String?
   date              DateTime
-  category          String           
+  category          String
   receiptUrl        String?
   isRecurring       Boolean           @default(false)
   recurringInterval RecurringInterval?
@@ -76,31 +74,6 @@ model Budget {
 
   @@index([userId])
   @@map("budgets")
-}
-
-model FinancialInsight {
-  id             String   @id @default(cuid())
-  userId         String
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  month          String
-  year           Int
-  
-  totalIncome    Decimal
-  totalExpenses  Decimal
-  categories     Json    @default("{}")
-  
-  insights       String[]
-  
-  netIncome      Decimal
-  savingsRate    Float
-  
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  @@unique([userId, month, year])
-  @@index([userId])
-  @@map("financial_insights")
 }
 
 enum TransactionType {

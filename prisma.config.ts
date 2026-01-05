@@ -1,14 +1,15 @@
-// Load environment variables from .env
+// prisma/prisma.config.ts
 import "dotenv/config";
-import { defineConfig, env } from "prisma/config";
+import { defineConfig } from "prisma/config";
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
   },
-  engine: "classic", // 'classic' engine for better stability
   datasource: {
-    url: env("DATABASE_URL"), // Reads from .env
+    // ✅ Access env variable directly instead of using env() which throws
+    url: process.env.DATABASE_URL ?? (() => { throw new Error("DATABASE_URL not set"); })(),
+
   },
 });
