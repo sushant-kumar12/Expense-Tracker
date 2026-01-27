@@ -1,28 +1,28 @@
-"use server";
+// "use server";
 
-import { supabase } from "@/lib/supabaseClient";
+// import { supabase } from "@/lib/supabaseClient";
 
-export async function signUp(email, password) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-  });
+// export async function signUp(email, password) {
+//   const { data, error } = await supabase.auth.signUp({
+//     email,
+//     password,
+//   });
 
-  if (error) throw new Error(error.message);
-  return data;
-}
+//   if (error) throw new Error(error.message);
+//   return data;
+// }
 
-export async function signIn(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+// export async function signIn(email, password) {
+//   const { data, error } = await supabase.auth.signInWithPassword({
+//     email,
+//     password,
+//   });
 
-  if (error) throw new Error(error.message);
-  return data;
-}
+//   if (error) throw new Error(error.message);
+//   return data;
+// }
 
-export async function signOut() {
-  const { error } = await supabase.auth.signOut();
-  if (error) throw new Error(error.message);
-}
+// export async function signOut() {
+//   const { error } = await supabase.auth.signOut();
+//   if (error) throw new Error(error.message);
+// }
