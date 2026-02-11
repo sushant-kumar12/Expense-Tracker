@@ -9,7 +9,7 @@ export default defineConfig({
   },
   datasource: {
     // ✅ Access env variable directly instead of using env() which throws
-    url: process.env.DATABASE_URL ?? (() => { throw new Error("DATABASE_URL not set"); })(),
+    url: process.env.DATABASE_URL ?? "postgresql://neondb_owner:npg_password@ep-host.region.aws.neon.tech/neondb?sslmode=require",
 
   },
 });
